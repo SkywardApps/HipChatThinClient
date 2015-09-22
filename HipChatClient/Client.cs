@@ -12,7 +12,7 @@ using HipChatClient.Utility;
 
 namespace HipChatClient
 {
-    public class Client
+    public class Client : IHipChatClient
     {
         public string OAuthToken { get; private set; }
         
@@ -64,7 +64,7 @@ namespace HipChatClient
             return new OAuthToken(tokenData);
         }
 
-        public IDictionary<Int64, User> Users
+        public IDictionary<Int64, IUser> Users
         {
             get
             {
@@ -74,11 +74,11 @@ namespace HipChatClient
                 {
                     user.Fetch();
                 }
-                return users;
+                return (IDictionary<Int64, IUser>)users;
             }
         }
 
-        public IDictionary<Int64, Room> Rooms
+        public IDictionary<Int64, IRoom> Rooms
         {
             get
             {

@@ -6,7 +6,7 @@ using HipChatClient.Utility;
 
 namespace HipChatClient.Model
 {
-    public class Room : ISeedable
+    public class Room : ISeedable, IRoom
     {
         public Room() { }
         public Room(dynamic seed, Client client)
@@ -25,7 +25,7 @@ namespace HipChatClient.Model
         public Int64 Id { get; private set; }
         public string Name { get; private set; }
 
-        public IDictionary<Int64, User> Participants
+        public IDictionary<Int64, IRestrictedUser> Participants
         {
             get
             {

@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="IHipChatClient.cs" />
+    <Compile Include="Model\IRoom.cs" />
     <Compile Include="Model\ISeedable.cs" />
     <Compile Include="Utility\DynamicJsonConverter.cs" />
     <Compile Include="Model\Message.cs" />

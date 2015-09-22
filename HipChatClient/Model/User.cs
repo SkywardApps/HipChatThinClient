@@ -3,7 +3,28 @@ using Microsoft.CSharp.RuntimeBinder;
 
 namespace HipChatClient.Model
 {
-    public class User : ISeedable
+    public interface IRestrictedUser
+    {
+        IUser Fetch();
+        Int64 Id { get; }
+        string Name { get; }
+        string MentionName { get; }
+    }
+
+    public interface IUser
+    {
+        Int64 Id { get; }
+        string Name { get; }
+        string MentionName { get; }
+        string Email { get; }
+        bool IsOnline { get; }
+        string StatusMessage { get; }
+        string Status { get; }
+        Int64 Idle { get; }
+        string XmppJid { get; }
+    }
+
+    public class User : ISeedable, IUser, IRestrictedUser
     {
         public User() { }
         public User(dynamic seed, Client client)
@@ -37,7 +58,7 @@ namespace HipChatClient.Model
             {}
         }
 
-        public User Fetch()
+        public IUser Fetch()
         {
             dynamic data = Client.GetFromHipChat(String.Format("https://api.hipchat.com/v2/user/{0}", Id));
             Seed(data, Client);
